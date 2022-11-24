@@ -65,7 +65,7 @@ class UserController extends BaseController
     {
         try {
             $currentUser = User::find($id);
-            if( $currentUser == null ) return $this->sendError('Usuaio no existe');
+            if( $currentUser == null ) return $this->sendError('Usuario no existe');
             $data = (object) $request->all();
             $update = array(
                 "name" => $data->name,
