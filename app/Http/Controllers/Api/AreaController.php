@@ -27,12 +27,12 @@ class AreaController extends BaseController
 
     public function search(Request $request)
     {
-        $areas = Area::where( "1" , "=" , "1" );
-        if( !$request->has('sede') ) $areas = $areas->where( "sede_id" , "=" , $request->query('sede') );
-        if( !$request->has('business') ) $areas = $areas->where( "business_id" , "=" , $request->query('business') );
+        $areas = Area::with(['business','sede']);
+        if( $request->has('sede') ) $areas = $areas->where( "sede_id" , "=" , (int) $request->query('sede') );
+        if( $request->has('business') ) $areas = $areas->where( "business_id" , "=" , $request->query('business') );
         $areas = $areas->orderBy('created_at', 'desc')
             ->get();
-        return $this->sendResponse($areas, 'List');
+        return $this->sendResponse($areas, 'List aaaa');
     }
 
     public function create(AreaCreateRequest $request)

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
+            'gpid' => '12345678',
             'role_id' => \App\Models\Role::Admin,
             'is_active' => $active->id,
             'password' => bcrypt("123456")

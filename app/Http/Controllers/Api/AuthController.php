@@ -23,6 +23,7 @@ class AuthController extends BaseController
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
+            'gpid' => 'required|integer|min:8|digits_between: 8,9',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
@@ -34,6 +35,7 @@ class AuthController extends BaseController
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'gpid' => $request->gpid,
             'role_id' => Role::User,
             'is_active' => Parameter::StatusActive,
             'password' => bcrypt($request->password)
@@ -52,7 +54,7 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'gpid' => 'required|integer|min:8|digits_between: 8,9',
             'password' => 'required'
         ]);
    
@@ -60,7 +62,7 @@ class AuthController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());       
         }
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if(Auth::attempt(['gpid' => $request->gpid, 'password' => $request->password])){
 
             $_user = Auth::user(); 
             //var_dump($_user);

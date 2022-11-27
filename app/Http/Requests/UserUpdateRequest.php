@@ -25,7 +25,8 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'gpid' => 'required|integer|min:8|digits_between: 8,9',
         ];
     }
 
@@ -34,7 +35,9 @@ class UserUpdateRequest extends FormRequest
         return [
             'name.required' => 'El nombre es obligatorio.',
             'email.required' => 'El email es obligatorio.',
-            'email.email' => 'Este campo debe ser un correo.'
+            'email.email' => 'Este campo debe ser un correo.',
+            'gpid.required' => 'El gpid es obligatorio.',
+            'gpid.integer' => 'El gpid debe ser numerico.',
         ];
     }
 }

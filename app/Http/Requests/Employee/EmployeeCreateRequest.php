@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserCreateRequest extends FormRequest
+class EmployeeCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,25 +24,24 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email',
-            'gpid' => 'required|integer|min:8|digits_between: 8,9|unique:users,gpid',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
+            'gpid'          => 'required',
+            'name'          => 'required',
+            'email'          => 'required',
+            'job'          => 'required',
+            'cost_center_id'   => 'required|integer|exists:cost_centers,id',
         ];
     }
 
     public function messages()
     {
         return [
+            'gpid.required' => 'El gpid es obligatorio.',
             'name.required' => 'El nombre es obligatorio.',
             'email.required' => 'El email es obligatorio.',
-            'gpid.required' => 'El gpid es obligatorio.',
-            'gpid.integer' => 'El gpid debe ser numerico.',
-            'gpid.unique' => 'El gpid ya existe.',
             'email.email' => 'Este campo debe ser un correo.',
-            'password.required' => 'La contraseña es obligatorio.',
-            'password.confirmed' => 'Las dos contraseñas deben ser iguales.'
+            'job.required' => 'El cargo es obligatorio.',
+            'cost_center_id.exists' => 'No existe el Centro de costo.',
+            'cost_center_id.required' => 'El Centro de costo es obligatorio.'
         ];
     }
 }

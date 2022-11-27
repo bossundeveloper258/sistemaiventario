@@ -8,7 +8,8 @@ use App\Http\Controllers\Api\BusinessController;
 use App\Http\Controllers\Api\SedeController;
 use App\Http\Controllers\Api\ParameterController;
 use App\Http\Controllers\Api\AreaController;
-
+use App\Http\Controllers\Api\CostCenterController;
+use App\Http\Controllers\Api\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +46,21 @@ Route::group([
     Route::controller(ParameterController::class)->group(function(){
         Route::get('parameters/search', 'search');
     });
+
+    Route::group([
+        'prefix' => 'employees'
+    ], function () {
+    
+        Route::controller(EmployeeController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+            Route::post('create', 'create');
+            Route::get('{id}', 'edit');
+            Route::put('{id}', 'update');
+        });
+    });
+    
 });
 
 Route::group([
@@ -133,5 +149,27 @@ Route::group([
             Route::put('{id}', 'update');
         });
     });
+
+    /*=====================================================================================*/
+    /*=============================== CENTRO DE COSTO     ==========================================*/
+    /*=====================================================================================*/
+    Route::group([
+        'prefix' => 'costcenters'
+    ], function () {
+    
+        Route::controller(CostCenterController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+            Route::post('create', 'create');
+            Route::get('{id}', 'edit');
+            Route::put('{id}', 'update');
+        });
+    });
+
+    /*=====================================================================================*/
+    /*=============================== CENTRO DE COSTO     ==========================================*/
+    /*=====================================================================================*/
+    
       
 });

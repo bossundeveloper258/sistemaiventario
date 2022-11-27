@@ -36,9 +36,9 @@ class AreaUpdateRequest extends FormRequest
         return [
             'id.required' => 'El id es obligatorio.',
             'name.required' => 'El email es obligatorio.',
-            'sede_id.required' => 'El Tipo de Sede es obligatorio.',
+            'sede_id.required' => 'La Sede es obligatorio.',
             'business_id.required' => 'La empresa es obligatorio.',
-            'sede_id.exists' => 'No existe el Tipo de Sede.',
+            'sede_id.exists' => 'No existe la Sede.',
             'business_id.exists' => 'No existe la empresa.'
         ];
     }

@@ -35,6 +35,7 @@ class UserController extends BaseController
             $user = User::create([
                 'name' => $data->name,
                 'email' => $data->email,
+                'gpid' => $data->gpid,
                 'password' => bcrypt( $data->password ),
                 'role_id' => Role::User,
                 'is_active' => 1
@@ -67,10 +68,18 @@ class UserController extends BaseController
             $currentUser = User::find($id);
             if( $currentUser == null ) return $this->sendError('Usuario no existe');
             $data = (object) $request->all();
+
+            $userExist = User::where('id', "!=",$id)->where("gpid" , "=" , $data->gpid)->count();
+
+            if( $userExist > 0) return $this->sendError('El GPID ya existe en otro usuario.');
+
             $update = array(
                 "name" => $data->name,
                 'email' => $data->email,
+                'gpid' => $data->gpid,
             );
+
+
 
             if( $data->password != null ){
                 if( $data->password_confirmation == null ) return $this->sendError('El campo confirmar contraseña es obligatorio.');

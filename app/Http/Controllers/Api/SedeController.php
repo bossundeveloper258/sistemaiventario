@@ -31,7 +31,7 @@ class SedeController extends BaseController
     public function search(Request $request)
     {
         $sedes = Sede::with([]);
-        if( !$request->has('business') ) $sedes = $sedes->where( "business_id" , "=" , $request->query('business') );
+        if( $request->has('business') ) $sedes = $sedes->where( "business_id" , "=" , $request->query('business') );
         $sedes = $sedes->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($sedes, 'List');
