@@ -16,6 +16,8 @@ class Parameter extends Model
     //
     const SedeType = 2;
 
+    const TypeComputer = 3;
+
 
     protected $hidden = [
         'created_at',

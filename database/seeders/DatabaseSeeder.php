@@ -15,27 +15,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (array('Admin' , 'User') as $key => $role) {
-            Role::create( [ 'name' => $role ] );
-        }
+        // foreach (array('Admin' , 'User') as $key => $role) {
+        //     Role::create( [ 'name' => $role ] );
+        // }
 
-        $active = \App\Models\Parameter::create([
-            'parent' => \App\Models\Parameter::Status,
-            'description' => "Activo"
+        // $active = \App\Models\Parameter::create([
+        //     'parent' => \App\Models\Parameter::Status,
+        //     'description' => "Activo"
+        // ]);
+
+        // \App\Models\Parameter::create([
+        //     'parent' => \App\Models\Parameter::Status,
+        //     'description' => "Inactivo"
+        // ]);
+
+        // \App\Models\User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@admin.com',
+        //     'gpid' => '12345678',
+        //     'role_id' => \App\Models\Role::Admin,
+        //     'is_active' => $active->id,
+        //     'password' => bcrypt("123456")
+        // ]);
+
+        /* ========== opciones computo ==========*/
+        \App\Models\Parameter::create([
+            'parent' => \App\Models\Parameter::TypeComputer,
+            'description' => "DESKTOP"
         ]);
 
         \App\Models\Parameter::create([
-            'parent' => \App\Models\Parameter::Status,
-            'description' => "Inactivo"
-        ]);
-
-        \App\Models\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'gpid' => '12345678',
-            'role_id' => \App\Models\Role::Admin,
-            'is_active' => $active->id,
-            'password' => bcrypt("123456")
+            'parent' => \App\Models\Parameter::TypeComputer,
+            'description' => "LAPTOP"
         ]);
     }
 }

@@ -60,6 +60,16 @@ Route::group([
             Route::put('{id}', 'update');
         });
     });
+
+    Route::group([
+        'prefix' => 'costcenters'
+    ], function () {
+    
+        Route::controller(CostCenterController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+        });
+    });
     
 });
 
@@ -159,7 +169,7 @@ Route::group([
     
         Route::controller(CostCenterController::class)->group(function(){
             
-            Route::get('find-all', 'findAll');
+            // Route::get('find-all', 'findAll');
             Route::get('search', 'search');
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
