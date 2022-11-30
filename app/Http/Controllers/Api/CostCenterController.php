@@ -30,9 +30,9 @@ class CostCenterController extends BaseController
     public function search(Request $request)
     {
         $costcenters = CostCenter::with(['business','sede','area']);
-        if( !$request->has('area') ) $costcenters = $costcenters->where( "area_id" , "=" , $request->query('area') );
-        if( !$request->has('sede') ) $costcenters = $costcenters->where( "sede_id" , "=" , $request->query('sede') );
-        if( !$request->has('business') ) $costcenters = $costcenters->where( "business_id" , "=" , $request->query('business') );
+        if( $request->has('area') ) $costcenters = $costcenters->where( "area_id" , "=" , $request->query('area') );
+        if( $request->has('sede') ) $costcenters = $costcenters->where( "sede_id" , "=" , $request->query('sede') );
+        if( $request->has('business') ) $costcenters = $costcenters->where( "business_id" , "=" , $request->query('business') );
         $costcenters = $costcenters->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($costcenters, 'List');

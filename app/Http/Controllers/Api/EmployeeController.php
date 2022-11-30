@@ -31,7 +31,7 @@ class EmployeeController extends BaseController
     {
         $employees = Employee::with(['cost_center']);
         
-        if( !$request->has('cost_center') ) $employees = $employees->where( "cost_center_id" , "=" , $request->query('cost_center') );
+        if( $request->has('cost_center') ) $employees = $employees->where( "cost_center_id" , "=" , $request->query('cost_center') );
         $employees = $employees->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($employees, 'List');

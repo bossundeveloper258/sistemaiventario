@@ -17,6 +17,11 @@ class Parameter extends Model
     const SedeType = 2;
 
     const TypeComputer = 3;
+    const BrandComputer = 4;
+    const ModelComputer = 5;
+    const SOComputer = 6;
+    const StatusComputer = 7;
+    const SupplierComputer = 8;
 
 
     protected $hidden = [

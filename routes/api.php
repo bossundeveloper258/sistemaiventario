@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ParameterController;
 use App\Http\Controllers\Api\AreaController;
 use App\Http\Controllers\Api\CostCenterController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\ComputerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,6 +62,55 @@ Route::group([
         });
     });
 
+    /*=====================================================================================*/
+    /*=============================== BUSINESS     ==========================================*/
+    /*=====================================================================================*/
+
+    Route::group([
+        'prefix' => 'business'
+    ], function () {
+    
+        Route::controller(BusinessController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+
+        });
+    
+    });
+
+    /*=====================================================================================*/
+    /*=============================== SEDES     ==========================================*/
+    /*=====================================================================================*/
+    Route::group([
+        'prefix' => 'sedes'
+    ], function () {
+    
+        Route::controller(SedeController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+        });
+    });
+
+    /*=====================================================================================*/
+    /*=============================== AREAS     ==========================================*/
+    /*=====================================================================================*/
+
+    Route::group([
+        'prefix' => 'areas'
+    ], function () {
+    
+        Route::controller(AreaController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+        });
+    });
+
+    /*=====================================================================================*/
+    /*=============================== COSTCENTER     ==========================================*/
+    /*=====================================================================================*/
+
     Route::group([
         'prefix' => 'costcenters'
     ], function () {
@@ -68,6 +118,28 @@ Route::group([
         Route::controller(CostCenterController::class)->group(function(){
             
             Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+            Route::get('{id}', 'edit');
+        });
+    });
+
+    
+
+    /*=====================================================================================*/
+    /*=============================== COMPUTERS     ==========================================*/
+    /*=====================================================================================*/
+
+    Route::group([
+        'prefix' => 'computers'
+    ], function () {
+    
+        Route::controller(ComputerController::class)->group(function(){
+            
+            Route::get('find-all', 'findAll');
+            Route::get('search', 'search');
+            Route::post('create', 'create');
+            Route::get('{id}', 'edit');
+            Route::put('{id}', 'update');
         });
     });
     
@@ -117,7 +189,7 @@ Route::group([
     
         Route::controller(BusinessController::class)->group(function(){
             
-            Route::get('find-all', 'findAll');
+            // Route::get('find-all', 'findAll');
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
@@ -135,8 +207,8 @@ Route::group([
     
         Route::controller(SedeController::class)->group(function(){
             
-            Route::get('find-all', 'findAll');
-            Route::get('search', 'search');
+            // Route::get('find-all', 'findAll');
+            // Route::get('search', 'search');
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
@@ -152,8 +224,8 @@ Route::group([
     
         Route::controller(AreaController::class)->group(function(){
             
-            Route::get('find-all', 'findAll');
-            Route::get('search', 'search');
+            // Route::get('find-all', 'findAll');
+            // Route::get('search', 'search');
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
@@ -170,16 +242,12 @@ Route::group([
         Route::controller(CostCenterController::class)->group(function(){
             
             // Route::get('find-all', 'findAll');
-            Route::get('search', 'search');
+            
             Route::post('create', 'create');
-            Route::get('{id}', 'edit');
+            
             Route::put('{id}', 'update');
         });
     });
 
-    /*=====================================================================================*/
-    /*=============================== CENTRO DE COSTO     ==========================================*/
-    /*=====================================================================================*/
-    
       
 });
