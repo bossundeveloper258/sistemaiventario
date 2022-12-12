@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('employees', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('area_id')->nullable()->change();
+            $table->unsignedBigInteger('area_id')->nullable();
             
         });
     }
