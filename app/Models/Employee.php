@@ -14,11 +14,17 @@ class Employee extends Model
         'name',
         'email',
         'job',
-        'cost_center_id'
+        'cost_center_id',
+        'area_id'
     ];
 
     public function cost_center()
     {
         return $this->belongsTo(CostCenter::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
     }
 }

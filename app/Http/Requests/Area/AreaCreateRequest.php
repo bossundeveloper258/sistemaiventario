@@ -25,7 +25,7 @@ class AreaCreateRequest extends FormRequest
     {
         return [
             'name'          => 'required',
-            'sede_id'     => 'required|integer|exists:sedes,id',
+            //'sede_id'     => 'required|integer|exists:sedes,id',
             'business_id'   => 'required|integer|exists:businesses,id',
         ];
     }
@@ -34,9 +34,9 @@ class AreaCreateRequest extends FormRequest
     {
         return [
             'name.required' => 'El nombre es obligatorio.',
-            'sede_id.required' => 'La Sede es obligatorio.',
+            //'sede_id.required' => 'La Sede es obligatorio.',
             'business_id.required' => 'La empresa es obligatorio.',
-            'sede_id.exists' => 'No existe la Sede.',
+            //'sede_id.exists' => 'No existe la Sede.',
             'business_id.exists' => 'No existe la empresa.'
         ];
     }

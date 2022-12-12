@@ -59,6 +59,7 @@ Route::group([
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
+            Route::put('{id}/status', 'updateStatus');
         });
     });
 
@@ -73,7 +74,7 @@ Route::group([
         Route::controller(BusinessController::class)->group(function(){
             
             Route::get('find-all', 'findAll');
-
+            Route::get('search', 'search');
         });
     
     });
@@ -193,7 +194,8 @@ Route::group([
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
-
+            Route::put('{id}/status', 'updateStatus');
+            
         });
     
     });
@@ -212,6 +214,7 @@ Route::group([
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
+            Route::put('{id}/status', 'updateStatus');
         });
     });
 
@@ -229,6 +232,7 @@ Route::group([
             Route::post('create', 'create');
             Route::get('{id}', 'edit');
             Route::put('{id}', 'update');
+            Route::put('{id}/status', 'updateStatus');
         });
     });
 

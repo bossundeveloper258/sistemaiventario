@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         Passport::tokensExpireIn(now()->addHours(4));
         Passport::refreshTokensExpireIn(now()->addHours(24));
-        Passport::personalAccessTokensExpireIn(now()->addDays(6));
+        Passport::personalAccessTokensExpireIn(now()->addHours(8));
 
         // Passport::tokensExpireIn(now()->addDays(15));
         // Passport::refreshTokensExpireIn(now()->addDays(30));

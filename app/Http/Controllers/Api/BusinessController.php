@@ -28,6 +28,15 @@ class BusinessController extends BaseController
         return $this->sendResponse($business, 'List');
     }
 
+    public function search(Request $request)
+    {
+        $business = Business::with([]);
+        if( $request->has('status') ) $business = $business->where( "status" , $request->query('status') );
+        $business = $business->orderBy('created_at', 'desc')
+            ->get();
+        return $this->sendResponse($business, 'List aaaa');
+    }
+
     public function create(BusinessCreateRequest $request)
     {
         try {
@@ -84,6 +93,36 @@ class BusinessController extends BaseController
             $business = Business::where('id', $id)->update($update);
             
             return $this->sendResponse($business, 'Edit');
+
+        } catch (\Throwable $th) {
+            return $this->sendError('Hubo un error.');
+        }
+    }
+
+
+    public function updateStatus( Request $request , $id)
+    {
+        try {
+            $currentBusiness = Business::find($id);
+            if( $currentBusiness == null ) return $this->sendError('Empresa no existe');
+
+            $validator = Validator::make($request->all(),[
+                'status' => 'required|boolean',
+            ]); 
+    
+            if($validator->fails()) {          
+                return $this->sendError('Error Validacion', ['error'=> $validator->errors() ]);
+            }
+
+            $data = (object) $request->all();
+
+            $update = array(
+                "status" => $data->status == 1? true : false,
+            );
+
+            $user = Business::where('id', $id)->update($update);
+            
+            return $this->sendResponse($user, 'Cambio estado');
 
         } catch (\Throwable $th) {
             return $this->sendError('Hubo un error.');

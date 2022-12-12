@@ -15,7 +15,8 @@ class Sede extends Model
         'address',
         'sede_type_id',
         'business_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function user()

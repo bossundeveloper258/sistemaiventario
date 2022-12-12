@@ -13,7 +13,8 @@ class Business extends Model
         'ruc',
         'name',
         'address',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function user()

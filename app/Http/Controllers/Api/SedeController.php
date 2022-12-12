@@ -32,6 +32,7 @@ class SedeController extends BaseController
     {
         $sedes = Sede::with([]);
         if( $request->has('business') ) $sedes = $sedes->where( "business_id" , "=" , $request->query('business') );
+        if( $request->has('status') ) $sedes = $sedes->where( "status" , $request->query('status') );
         $sedes = $sedes->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($sedes, 'List');
@@ -95,6 +96,35 @@ class SedeController extends BaseController
             $sede = Sede::where('id', $id)->update($update);
             
             return $this->sendResponse($sede, 'Edit');
+
+        } catch (\Throwable $th) {
+            return $this->sendError('Hubo un error.');
+        }
+    }
+
+    public function updateStatus( Request $request , $id)
+    {
+        try {
+            $currentSede = Sede::find($id);
+            if( $currentSede == null ) return $this->sendError('Sedes no existe');
+
+            $validator = Validator::make($request->all(),[
+                'status' => 'required|boolean',
+            ]); 
+    
+            if($validator->fails()) {          
+                return $this->sendError('Error Validacion', ['error'=> $validator->errors() ]);
+            }
+
+            $data = (object) $request->all();
+
+            $update = array(
+                "status" => $data->status == 1? true : false,
+            );
+
+            $sede = Sede::where('id', $id)->update($update);
+            
+            return $this->sendResponse($sede, 'Cambio estado');
 
         } catch (\Throwable $th) {
             return $this->sendError('Hubo un error.');

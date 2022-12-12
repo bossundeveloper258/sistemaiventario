@@ -13,7 +13,8 @@ class Area extends Model
         'name',
         'sede_id',
         'business_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function user()
