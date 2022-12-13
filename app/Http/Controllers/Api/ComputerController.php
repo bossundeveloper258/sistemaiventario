@@ -12,11 +12,16 @@ use Illuminate\Support\Facades\Auth;
 class ComputerController extends BaseController
 {
     //
-    public function findAll()
+    public function findAll(Request $request)
     {
-        $computers = Computer::with(['type','brand','model','so','status','supplier','ceco','employee','business','sede', 'area'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $computers = Computer::with(['type','brand','model','so','status','supplier','ceco','employee','business','sede', 'area']);
+        $gpid = $request->has('gpid') ? $request->query('gpid') : "";
+        if( !empty($gpid)  ) $computers = $computers->whereHas( 'employee' , function ($query) use ($gpid) {
+            return $query->where('gpid', '=', $gpid);
+        });
+
+        $computers = $computers->orderBy('created_at', 'desc')->get();
+
         return $this->sendResponse($computers, 'List');
     }
 
