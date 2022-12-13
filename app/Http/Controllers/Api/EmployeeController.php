@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeController extends BaseController
 {
     //
-    public function findAll()
+    public function findAll(Request $request)
     {
-        
-        $employees = Employee::with(['cost_center' , 'area' , 'business', 'sede'])
+        $gpid = $request->has('gpid') ? $request->query('gpid') : "";
+        $employees = Employee::with(['cost_center' , 'area' , 'business', 'sede']);
             // ->where( "user_id" , "=" , Auth::user()->id )
-            ->orderBy('created_at', 'desc')
+        if( !empty($gpid) ) $employees = $employees->where( "gpid" , $gpid );
+        $employees = $employees->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($employees, 'List');
     }
