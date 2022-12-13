@@ -41,7 +41,11 @@ class EmployeeCreateRequest extends FormRequest
             'email.email' => 'Este campo debe ser un correo.',
             'job.required' => 'El cargo es obligatorio.',
             'cost_center_id.exists' => 'No existe el Centro de costo.',
-            'cost_center_id.required' => 'El Centro de costo es obligatorio.'
+            'cost_center_id.required' => 'El Centro de costo es obligatorio.',
+            'area_id.required' => 'El Area es obligatorio.',
+            'business_id.required' => 'La empresa es obligatorio.',
+            'area_id.exists' => 'No existe el Area.',
+            'business_id.exists' => 'No existe la empresa.'
         ];
     }
 }

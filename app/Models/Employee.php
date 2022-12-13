@@ -16,7 +16,8 @@ class Employee extends Model
         'job',
         'cost_center_id',
         'area_id',
-        'business_id'
+        'business_id',
+        'sede_id',
     ];
 
     public function cost_center()
@@ -32,5 +33,10 @@ class Employee extends Model
     public function business()
     {
         return $this->belongsTo(Business::class, 'business_id');
+    }
+
+    public function sede()
+    {
+        return $this->belongsTo(Sede::class, 'sede_id');
     }
 }

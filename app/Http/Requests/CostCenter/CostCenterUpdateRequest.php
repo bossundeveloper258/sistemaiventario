@@ -29,6 +29,7 @@ class CostCenterUpdateRequest extends FormRequest
             'name'          => 'required',
             'area_id'     => 'required|integer|exists:areas,id',
             'business_id'   => 'required|integer|exists:businesses,id',
+            
         ];
     }
 
