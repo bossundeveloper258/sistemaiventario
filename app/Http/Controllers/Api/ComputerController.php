@@ -14,7 +14,7 @@ class ComputerController extends BaseController
     //
     public function findAll()
     {
-        $computers = Computer::with(['type','brand','model','so','status','supplier','ceco','employee'])
+        $computers = Computer::with(['type','brand','model','so','status','supplier','ceco','employee','business','sede', 'area'])
             ->orderBy('created_at', 'desc')
             ->get();
         return $this->sendResponse($computers, 'List');
@@ -52,7 +52,7 @@ class ComputerController extends BaseController
                 'factura'               => $data->factura ?? null,
                 'amount'                => $data->amount ?? null,
                 'supplier_id'           => $data->supplier_id ?? null,
-                'business_id'               => $data->business_id ?? null,
+                'business_id'           => $data->business_id ?? null,
                 'sede_id'               => $data->sede_id ?? null,
                 'area_id'               => $data->area_id ?? null,
                 'ceco_id'               => $data->ceco_id ?? null,
