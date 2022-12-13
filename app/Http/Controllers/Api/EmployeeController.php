@@ -20,7 +20,7 @@ class EmployeeController extends BaseController
     public function findAll()
     {
         
-        $employees = Employee::with(['cost_center' , 'area'])
+        $employees = Employee::with(['cost_center' , 'area' , 'business'])
             // ->where( "user_id" , "=" , Auth::user()->id )
             ->orderBy('created_at', 'desc')
             ->get();
@@ -51,6 +51,8 @@ class EmployeeController extends BaseController
                 'email'             => $data->email,
                 'job'               => $data->job,
                 'cost_center_id'    => $data->cost_center_id,
+                'area_id'           => $data->area_id ?? null,
+                'business_id'       => $data->business_id ?? null,
                 // 'user_id'       => Auth::user()->id,
             ]);
 
@@ -94,6 +96,8 @@ class EmployeeController extends BaseController
                 'email'             => $data->email,
                 'job'               => $data->job,
                 'cost_center_id'    => $data->cost_center_id,
+                'area_id'           => $data->area_id,
+                'business_id'       => $data->business_id,
             );
 
             $employee = Employee::where('id', $id)->update($update);

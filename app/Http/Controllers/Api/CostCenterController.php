@@ -48,7 +48,7 @@ class CostCenterController extends BaseController
                 'code'          => $data->code,
                 'name'          => $data->name,
                 'area_id'       => $data->area_id,
-                'sede_id'       => $data->sede_id,
+                'sede_id'       => null,
                 'business_id'   => $data->business_id,
                 // 'user_id'       => Auth::user()->id,
             ]);
@@ -91,7 +91,7 @@ class CostCenterController extends BaseController
                 'code'          => $data->code,
                 'name'          => $data->name,
                 'area_id'       => $data->area_id,
-                'sede_id'       => $data->sede_id,
+                'sede_id'       => null,
                 'business_id'   => $data->business_id,
             );
 

@@ -27,7 +27,6 @@ class CostCenterCreateRequest extends FormRequest
             'code'          => 'required',
             'name'          => 'required',
             'area_id'     => 'required|integer|exists:areas,id',
-            'sede_id'     => 'required|integer|exists:sedes,id',
             'business_id'   => 'required|integer|exists:businesses,id',
         ];
     }
@@ -38,10 +37,8 @@ class CostCenterCreateRequest extends FormRequest
             'code.required' => 'El codigo es obligatorio.',
             'name.required' => 'El nombre es obligatorio.',
             'area_id.required' => 'El Area es obligatorio.',
-            'sede_id.required' => 'El Sede es obligatorio.',
             'business_id.required' => 'La empresa es obligatorio.',
             'area_id.exists' => 'No existe el Area.',
-            'sede_id.exists' => 'No existe la Sede.',
             'business_id.exists' => 'No existe la empresa.'
         ];
     }

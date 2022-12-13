@@ -35,6 +35,9 @@ class Computer extends Model
         'factura',
         'amount',
         'supplier_id',
+        'business_id',
+        'sede_id',
+        'area_id',
         'ceco_id',
         'employee_id',
         'user_id'

@@ -52,6 +52,9 @@ class ComputerController extends BaseController
                 'factura'               => $data->factura ?? null,
                 'amount'                => $data->amount ?? null,
                 'supplier_id'           => $data->supplier_id ?? null,
+                'business_id'               => $data->business_id ?? null,
+                'sede_id'               => $data->sede_id ?? null,
+                'area_id'               => $data->area_id ?? null,
                 'ceco_id'               => $data->ceco_id ?? null,
                 'employee_id'           => $data->employee_id ?? null,
                 'user_id'               => Auth::user()->id,
@@ -117,6 +120,9 @@ class ComputerController extends BaseController
                 'factura'               => $data->factura ?? null,
                 'amount'                => $data->amount ?? null,
                 'supplier_id'           => $data->supplier_id ?? null,
+                'business_id'               => $data->business_id ?? null,
+                'sede_id'               => $data->sede_id ?? null,
+                'area_id'               => $data->area_id ?? null,
                 'ceco_id'               => $data->ceco_id ?? null,
                 'employee_id'           => $data->employee_id ?? null
             );
